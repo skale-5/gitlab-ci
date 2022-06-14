@@ -1,0 +1,22 @@
+variables:
+  # COOKIECUTTER
+  COOKIECUTTER_IMAGE: "python:slim-bullseye"
+  COOKIECUTTER_VERSION: "1.7.3"
+
+build-cookiecutter:
+  stage: build
+  image:
+    name: ${COOKIECUTTER_IMAGE}
+  script:
+    - DIR=$(basename "$(pwd)")
+    - pushd ..
+    - |
+      for test in $(ls tests/*.json); do
+        filename=$(basename -- "$test")
+        filename="${filename%.*}"
+        cookiecutter "$DIR" -f --config-file "$test" --no-input --output-dir "$DIR"/example/"$test"
+      done
+    - popd || exit
+  artifacts:
+    paths:
+      - example/
