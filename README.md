@@ -8,7 +8,7 @@ Cela correspond par exemple aux CI utilisées en internes dans les repos cookiec
 Ajouter le submodule
 
 ```bash
-git add submodule git@git.sk5.io:skale-5/gitlab-ci.git
+git submodule add git@git.sk5.io:skale-5/gitlab-ci.git
 ```
 
 Créer un lien avec le fichier gitlab-ci voulu
