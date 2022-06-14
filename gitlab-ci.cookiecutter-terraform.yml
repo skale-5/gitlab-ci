@@ -1,3 +1,2 @@
 include:
-    - /gitlab-ci/pre-commit/.gitlab-ci.cookiecutter.yml
-    - /gitlab-ci/custom/.gitlab-ci.custom.yml
+    - /gitlab-ci/gitlab-ci/.gitlab-ci.cookiecutter.yml
