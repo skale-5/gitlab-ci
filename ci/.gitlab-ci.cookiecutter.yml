@@ -1,17 +1,18 @@
 variables:
   # COOKIECUTTER
   COOKIECUTTER_IMAGE: "python:slim-bullseye"
-  COOKIECUTTER_VERSION: "1.7.3"
+  COOKIECUTTER_VERSION: "2.1.1"
 
 build-cookiecutter:
   stage: build
   image:
     name: ${COOKIECUTTER_IMAGE}
   script:
+    - pip3 install cookiecutter==${COOKIECUTTER_VERSION} packaging
     - DIR=$(basename "$(pwd)")
     - pushd ..
     - |
-      for test in $(ls tests/*.json); do
+      for test in $(ls ${DIR}/tests/*.yaml); do
         filename=$(basename -- "$test")
         filename="${filename%.*}"
         cookiecutter "$DIR" -f --config-file "$test" --no-input --output-dir "$DIR"/example/"$filename" || exit 1
