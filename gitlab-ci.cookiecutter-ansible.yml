@@ -1,0 +1,2 @@
+include:
+    - /gitlab-ci/gitlab-ci/ci/.gitlab-ci.cookiecutter.yml
