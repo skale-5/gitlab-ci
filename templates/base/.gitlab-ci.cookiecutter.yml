@@ -1,5 +1,4 @@
 variables:
-  # COOKIECUTTER
   COOKIECUTTER_IMAGE: "python:slim-bullseye"
   COOKIECUTTER_VERSION: "2.1.1"
 

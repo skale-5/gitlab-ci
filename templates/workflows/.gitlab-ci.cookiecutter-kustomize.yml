@@ -1,0 +1,5 @@
+stages:
+    - build
+
+include:
+    - local: /templates/base/.gitlab-ci.cookiecutter.yml

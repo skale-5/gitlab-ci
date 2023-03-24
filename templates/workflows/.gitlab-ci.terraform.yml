@@ -1,0 +1,8 @@
+stages:
+    - lint
+    - security
+
+include:
+    - local: /templates/base/.gitlab-ci.tffmt.yml
+    - local: /templates/base/.gitlab-ci.tflint.yml
+    - local: /templates/base/.gitlab-ci.tfsec.yml

@@ -1,0 +1,13 @@
+
+.check:
+  stage: release
+  image: ubuntu:latest
+  script:
+    - |
+      if [ -z "${!VAR}" ]; then
+        echo "GitLab variable $VAR is missing."
+        echo "$MESSAGE"
+        exit 1
+      else
+        echo "GitLab variable $VAR is present."
+      fi

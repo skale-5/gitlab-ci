@@ -1,12 +1,9 @@
 variables:
-  # TFLINT
   TF_TFLINT_IMAGE: "ghcr.io/terraform-linters/tflint-bundle"
-  TF_TFLINT_VERSION: v0.36.1.0
+  TF_TFLINT_VERSION: v0.45.0.2
 
 terraform-tflint:
   stage: lint
-  tags:
-    - lint
   image:
     name: ${TF_TFLINT_IMAGE}:${TF_TFLINT_VERSION}
     entrypoint: [""]

@@ -1,20 +1,17 @@
 variables:
-  # TFSEC
   TF_TFSEC_IMAGE: "aquasec/tfsec-ci"
-  TF_TFSEC_VERSION: "v1.19.1"
+  TF_TFSEC_VERSION: "v1.28.1"
   TF_TFSEC_ARGS: "."
 
 terraform-tfsec:
   stage: security
-  tags:
-    - security
   image:
     name: ${TF_TFSEC_IMAGE}:${TF_TFSEC_VERSION}
   before_script:
     - mkdir -p reports
     - chmod 777 reports
   script:
-    - tfsec --format junit --out reports/tfsec.xml infrastructure
+    - tfsec --format junit --out reports/tfsec.xml .
   artifacts:
     name: "$CI_JOB_NAME artifacts from $CI_PROJECT_NAME on $CI_COMMIT_REF_SLUG"
     reports:

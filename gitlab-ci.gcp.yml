@@ -1,3 +1,0 @@
-include:
-    - /gitlab-ci/gitlab-ci/ci/.gitlab-ci.tffmt.yml
-    - /gitlab-ci/gitlab-ci/ci/.gitlab-ci.tflint.yml
