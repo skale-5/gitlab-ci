@@ -1,0 +1,15 @@
+include:
+  - local: /templates/base/.gitlab-ci.check-var.yml
+  - local: /templates/base/.gitlab-ci.basic-semantic-release.yml
+
+check-GL_TOKEN:
+  stage: release
+  extends: .check-GL_TOKEN
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "push"'
+
+semantic-release:
+  stage: release
+  extends: .semantic-release
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "push"'

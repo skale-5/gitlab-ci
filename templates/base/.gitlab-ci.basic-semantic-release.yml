@@ -1,25 +1,26 @@
 include:
-    - local: /templates/base/.gitlab-ci.check-var.yml
+  - local: /templates/base/.gitlab-ci.check-var.yml
 
 variables:
   SEMANTIC_RELEASE_IMAGE: "node:18-buster-slim"
 
-check-GL_TOKEN:
+.check-GL_TOKEN:
   stage: release
   extends: .check
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "main" || $CI_COMMIT_BRANCH == "master"'
   variables:
     VAR: "GL_TOKEN"
     MESSAGE: |
       "$VAR Gitlab variable has not been found. It should be present in group vars at the /skale-5 scope"
 
-
-semantic-release:
+.semantic-release:
   stage: release
   needs:
     - check-GL_TOKEN
   image: ${SEMANTIC_RELEASE_IMAGE}
   rules:
-    - if: '($CI_COMMIT_BRANCH == "main" || $CI_COMMIT_BRANCH == "master") && $CI_PIPELINE_SOURCE == "push"'
+    - if: '$CI_COMMIT_BRANCH == "main" || $CI_COMMIT_BRANCH == "master"'
   before_script:
     - apt-get update && apt-get install -y --no-install-recommends git-core ca-certificates
     - npm install -g semantic-release @semantic-release/gitlab
