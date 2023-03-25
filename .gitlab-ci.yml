@@ -3,4 +3,4 @@ stages:
   - release
 
 include:
-  - /templates/base/.gitlab-ci.basic-semantic-release-scheduled.yml
+  - local: /templates/workflows/.gitlab-ci.common.yml

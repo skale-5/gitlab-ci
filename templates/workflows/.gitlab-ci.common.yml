@@ -1,0 +1,5 @@
+stages:
+    - release
+
+include:
+    - local: /templates/base/.gitlab-ci.basic-semantic-release-scheduled.yml
