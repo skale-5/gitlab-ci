@@ -1,3 +1,16 @@
+# [2.0.0](https://git.sk5.io/skale-5/gitlab-ci/compare/v1.0.0...v2.0.0) (2023-03-25)
+
+
+### Features
+
+* **semantic-release:** add basic workflow ([685a325](https://git.sk5.io/skale-5/gitlab-ci/commit/685a325fec4c84bf294a7d83a7ec8ce1106c98de))
+* **semantic-release:** add scheduled workflow ([1c61a97](https://git.sk5.io/skale-5/gitlab-ci/commit/1c61a97d18ad8525edcc7b69193c2c9785ec7a55))
+
+
+### BREAKING CHANGES
+
+* **semantic-release:** rename semantic-release auto trigger workflow
+
 # 1.0.0 (2023-03-24)
 
 
