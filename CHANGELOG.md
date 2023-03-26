@@ -1,3 +1,10 @@
+## [2.0.1](https://git.sk5.io/skale-5/gitlab-ci/compare/v2.0.0...v2.0.1) (2023-03-26)
+
+
+### Bug Fixes
+
+* fix badges ([f37ce54](https://git.sk5.io/skale-5/gitlab-ci/commit/f37ce548e051f132ef7f92252308adfbdca416b4))
+
 # [2.0.0](https://git.sk5.io/skale-5/gitlab-ci/compare/v1.0.0...v2.0.0) (2023-03-25)
 
 
