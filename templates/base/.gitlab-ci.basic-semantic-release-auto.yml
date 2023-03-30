@@ -1,5 +1,4 @@
 include:
-  - local: /templates/base/.gitlab-ci.check-var.yml
   - local: /templates/base/.gitlab-ci.basic-semantic-release.yml
 
 check-GL_TOKEN:
