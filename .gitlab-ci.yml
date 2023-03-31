@@ -1,6 +1,2 @@
-
-stages:
-  - release
-
 include:
   - local: /templates/workflows/.gitlab-ci.common.yml
