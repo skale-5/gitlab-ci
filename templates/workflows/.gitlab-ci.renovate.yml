@@ -1,0 +1,11 @@
+stages:
+    - build
+    - release
+
+include:
+    - remote: https://gitlab.com/renovate-bot/renovate-runner/-/raw/v12.14.1/templates/renovate.gitlab-ci.yml
+    - local: /templates/base/.gitlab-ci.basic-semantic-release-scheduled.yml
+
+renovate:
+    rules:
+        - if: '$CI_PIPELINE_SOURCE == "schedule" && $SCHEDULE_ACTION == "renovate"'
