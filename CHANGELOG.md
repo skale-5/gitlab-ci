@@ -1,3 +1,10 @@
+# [2.1.0](https://git.sk5.io/skale-5/gitlab-ci/compare/v2.0.1...v2.1.0) (2023-04-09)
+
+
+### Features
+
+* add renovate ci workflow ([837482b](https://git.sk5.io/skale-5/gitlab-ci/commit/837482b720d94344c123550c8597e0728537be21))
+
 ## [2.0.1](https://git.sk5.io/skale-5/gitlab-ci/compare/v2.0.0...v2.0.1) (2023-03-26)
 
 
