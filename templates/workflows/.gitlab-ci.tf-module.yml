@@ -1,8 +1,9 @@
 stages:
-    - lint
-    - security
-
+    - quality
+    - release
 include:
     - local: /templates/base/.gitlab-ci.tffmt.yml
     - local: /templates/base/.gitlab-ci.tflint.yml
     - local: /templates/base/.gitlab-ci.tfsec.yml
+    - local: /templates/base/.gitlab-ci.tfdocs.yml
+    - local: /templates/base/.gitlab-ci.basic-semantic-release-auto.yml

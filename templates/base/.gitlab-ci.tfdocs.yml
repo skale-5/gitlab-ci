@@ -1,0 +1,19 @@
+variables:
+  TF_TERRAFORM_DOCS_IMAGE: "cytopia/terraform-docs"
+  TF_TERRAFORM_DOCS_VERSION: "0.16.0"
+
+terraform-docs:
+  stage: quality
+  image:
+    name: ${TF_TERRAFORM_DOCS_IMAGE}:${TF_TERRAFORM_DOCS_VERSION}
+  script:
+    - echo -e "formatter:\x20\"markdown table\"" > tfdocs.yml
+    - echo "output:" >> tfdocs.yml
+    - echo -e "  file:\x20\"README.md\"" >> tfdocs.yml
+    - echo -e "  mode:\x20inject" >> tfdocs.yml
+    - echo -e "  template:\x20|-" >> tfdocs.yml
+    - echo "    <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->" >> tfdocs.yml
+    - echo "    {{ .Content }}" >> tfdocs.yml
+    - echo "    <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->" >> tfdocs.yml
+    - cat tfdocs.yml
+    - terraform-docs --config tfdocs.yml --output-check .
