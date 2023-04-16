@@ -1,3 +1,10 @@
+# [2.2.0](https://git.sk5.io/skale-5/gitlab-ci/compare/v2.1.0...v2.2.0) (2023-04-16)
+
+
+### Features
+
+* add tfmodule gitlab CI workflow ([5adca17](https://git.sk5.io/skale-5/gitlab-ci/commit/5adca1731e77ba9c4fb5629563555ac2ee7e24b0))
+
 # [2.1.0](https://git.sk5.io/skale-5/gitlab-ci/compare/v2.0.1...v2.1.0) (2023-04-09)
 
 
