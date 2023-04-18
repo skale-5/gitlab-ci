@@ -12,3 +12,6 @@ semantic-release:
   extends: .semantic-release
   rules:
     - if: '$CI_PIPELINE_SOURCE == "push"'
+  only:
+    - master
+    - main
