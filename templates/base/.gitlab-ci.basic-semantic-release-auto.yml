@@ -11,7 +11,5 @@ semantic-release:
   stage: release
   extends: .semantic-release
   rules:
-    - if: '$CI_PIPELINE_SOURCE == "push"'
-  only:
-    - master
-    - main
+    - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH == "master"'
+    - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH == "main"'
