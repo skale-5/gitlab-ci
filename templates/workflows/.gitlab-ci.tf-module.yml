@@ -7,3 +7,6 @@ include:
     - local: /templates/base/.gitlab-ci.tfsec.yml
     - local: /templates/base/.gitlab-ci.tfdocs.yml
     - local: /templates/base/.gitlab-ci.basic-semantic-release-auto.yml
+      rules:
+        - if: $CI_COMMIT_BRANCH == "main"
+        - if: $CI_COMMIT_BRANCH == "master"
