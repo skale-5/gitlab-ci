@@ -1,3 +1,10 @@
+# [2.3.0](https://git.sk5.io/skale-5/gitlab-ci/compare/v2.2.0...v2.3.0) (2023-04-23)
+
+
+### Features
+
+* add new workflows for TF-Kustomize and TF-Helm ([87c27f1](https://git.sk5.io/skale-5/gitlab-ci/commit/87c27f1ef63c9842dfc7a90a0b4a912bda042153))
+
 # [2.2.0](https://git.sk5.io/skale-5/gitlab-ci/compare/v2.1.0...v2.2.0) (2023-04-16)
 
 
