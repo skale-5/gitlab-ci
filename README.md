@@ -36,6 +36,12 @@ include:
     file: '/templates/base/.gitlab-ci.tffmt.yml'
 ```
 
+Pour utiliser les workflows à l'extérieur de git.sk5.io, on peut se servir de la source publique :
+
+```yaml
+include:
+  - remote: https://raw.githubusercontent.com/skale-5/gitlab-ci/main/templates/workflows/.gitlab-ci.common.yml
+```
 
 ## Workflow utilisant semantic-release
 
