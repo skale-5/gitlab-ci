@@ -1,7 +1,9 @@
 stages:
     - quality
     - release
+
 include:
+    - local: /templates/base/.gitlab-ci.gitleaks.yml
     - local: /templates/base/.gitlab-ci.tffmt.yml
     - local: /templates/base/.gitlab-ci.tflint.yml
     - local: /templates/base/.gitlab-ci.tfsec.yml

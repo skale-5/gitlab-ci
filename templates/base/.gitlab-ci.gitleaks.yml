@@ -1,0 +1,6 @@
+gitleaks:
+  stage: quality
+  image: 
+    name: "zricethezav/gitleaks"
+    entrypoint: [""]
+  script: gitleaks detect -v --source=$PWD

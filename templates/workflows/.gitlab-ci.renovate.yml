@@ -1,8 +1,10 @@
 stages:
+    - quality
     - build
     - release
 
 include:
+    - local: /templates/base/.gitlab-ci.gitleaks.yml
     - remote: https://gitlab.com/renovate-bot/renovate-runner/-/raw/v12.14.1/templates/renovate.gitlab-ci.yml
     - local: /templates/base/.gitlab-ci.basic-semantic-release-scheduled.yml
 
