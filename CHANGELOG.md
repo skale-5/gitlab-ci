@@ -1,3 +1,10 @@
+# [2.4.0](https://git.sk5.io/skale-5/gitlab-ci/compare/v2.3.0...v2.4.0) (2023-04-30)
+
+
+### Features
+
+* add semantic release to cookiecutter wf ([baf8b57](https://git.sk5.io/skale-5/gitlab-ci/commit/baf8b572a76f1f37a2bf5e1173acfdb385276291))
+
 # [2.3.0](https://git.sk5.io/skale-5/gitlab-ci/compare/v2.2.0...v2.3.0) (2023-04-23)
 
 
