@@ -1,0 +1,9 @@
+stages:
+    - quality
+    - build
+    - release
+
+include:
+    - local: /templates/base/.gitlab-ci.gitleaks.yml
+    - local: /templates/base/.gitlab-ci.docker-build-push.yml
+    - local: /templates/base/.gitlab-ci.basic-semantic-release-auto.yml
