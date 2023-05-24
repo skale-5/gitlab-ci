@@ -21,6 +21,8 @@ variables:
     - npm install -g semantic-release @semantic-release/gitlab
     - npm install -g semantic-release @semantic-release/changelog
     - npm install -g semantic-release @semantic-release/git
+    - npm install -g semantic-release @semantic-release/exec
+
   script:
     - >
       semantic-release --branches "$CI_COMMIT_BRANCH" --dry-run | tee
@@ -44,6 +46,8 @@ variables:
     - npm install -g semantic-release @semantic-release/gitlab
     - npm install -g semantic-release @semantic-release/changelog
     - npm install -g semantic-release @semantic-release/git
+    - npm install -g semantic-release @semantic-release/exec
+
   script:
     - semantic-release
   variables:
