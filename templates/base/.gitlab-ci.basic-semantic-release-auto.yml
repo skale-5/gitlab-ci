@@ -1,16 +1,36 @@
 include:
   - local: /templates/base/.gitlab-ci.basic-semantic-release.yml
 
+# DRYRUN EXECUTION
+
+check-GL_TOKEN-dryrun:
+  stage: pre-release
+  extends: .check-GL_TOKEN
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH != $CI_DEFAULT_BRANCH'
+    - if: '$SEMANTIC_RELEASE_DRYRUN_ON_DEFAULT_BRANCH == "true"'
+
+semantic-release-dryrun:
+  stage: pre-release
+  needs:
+    - check-GL_TOKEN-dryrun
+  extends: .semantic-release-dryrun
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH != $CI_DEFAULT_BRANCH'
+    - if: '$SEMANTIC_RELEASE_DRYRUN_ON_DEFAULT_BRANCH == "true"'
+
+# NORMAL EXECUTION
+
 check-GL_TOKEN:
   stage: release
   extends: .check-GL_TOKEN
   rules:
-    - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH == "master"'
-    - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH == "main"'
+    - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
 
 semantic-release:
   stage: release
+  needs:
+    - check-GL_TOKEN
   extends: .semantic-release
   rules:
-    - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH == "master"'
-    - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH == "main"'
+    - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'

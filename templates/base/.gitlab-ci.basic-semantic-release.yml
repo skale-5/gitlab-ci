@@ -5,28 +5,45 @@ variables:
   SEMANTIC_RELEASE_IMAGE: "node:18-buster-slim"
 
 .check-GL_TOKEN:
-  stage: release
   extends: .check
-  rules:
-    - if: '$CI_COMMIT_BRANCH == "main" || $CI_COMMIT_BRANCH == "master"'
   variables:
     VAR: "GL_TOKEN"
     MESSAGE: |
       "$VAR Gitlab variable has not been found. It should be present in group vars at the /skale-5 scope"
 
-.semantic-release:
-  stage: release
-  needs:
-    - check-GL_TOKEN
+# DRYRUN EXECUTION
+
+.semantic-release-dryrun:
+  stage: pre-release
   image: ${SEMANTIC_RELEASE_IMAGE}
-  rules:
-    - if: '$CI_COMMIT_BRANCH == "main" || $CI_COMMIT_BRANCH == "master"'
   before_script:
     - apt-get update && apt-get install -y --no-install-recommends git-core ca-certificates
     - npm install -g semantic-release @semantic-release/gitlab
     - npm install -g semantic-release @semantic-release/changelog
     - npm install -g semantic-release @semantic-release/git
+  script:
+    - >
+      semantic-release --branches "$CI_COMMIT_BRANCH" --dry-run | tee
+      >(grep -oP 'Found\sgit\stag\s.*\sassociated\swith\sversion\s\K[0-9]+\.[0-9]+\.[0-9]+' > .CURRENT_RELEASE)
+      >(grep -oP 'The\snext\srelease\sversion\sis\s\K[0-9]+\.[0-9]+\.[0-9]+$' > .NEXT_RELEASE)
+    - echo "Current release version is $(cat .CURRENT_RELEASE). The next release version will be $(cat .NEXT_RELEASE)."
+  variables:
+    GL_TOKEN: ${GL_TOKEN}
+  artifacts:
+    paths:
+      - .CURRENT_RELEASE
+      - .NEXT_RELEASE
 
+# NORMAL EXECUTION
+
+.semantic-release:
+  stage: release
+  image: ${SEMANTIC_RELEASE_IMAGE}
+  before_script:
+    - apt-get update && apt-get install -y --no-install-recommends git-core ca-certificates
+    - npm install -g semantic-release @semantic-release/gitlab
+    - npm install -g semantic-release @semantic-release/changelog
+    - npm install -g semantic-release @semantic-release/git
   script:
     - semantic-release
   variables:

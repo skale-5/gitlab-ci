@@ -1,5 +1,6 @@
 stages:
     - quality
+    - pre-release
     - release
 
 include:

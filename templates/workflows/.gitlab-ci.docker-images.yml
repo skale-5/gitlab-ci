@@ -1,7 +1,11 @@
 stages:
     - quality
+    - pre-release
     - build
     - release
+
+variables:
+    SEMANTIC_RELEASE_DRYRUN_ON_DEFAULT_BRANCH: "true"
 
 include:
     - local: /templates/base/.gitlab-ci.gitleaks.yml

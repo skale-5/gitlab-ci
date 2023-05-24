@@ -1,6 +1,5 @@
 
 .check:
-  stage: release
   image: ubuntu:latest
   script:
     - |
