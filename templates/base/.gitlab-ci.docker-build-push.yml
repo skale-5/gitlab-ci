@@ -20,9 +20,12 @@
 kaniko_default_branch_with_semantic:
   extends: .kaniko:image
   rules:
-    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $ENABLE_SEMANTIC_RELEASE != "false"'
+    - if: '$ENABLE_SEMANTIC_RELEASE == "false"'
+      when: never
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
   script:
     - |
+      echo "CI commit branch is $CI_COMMIT_BRANCH."
       if [ "$CURRENT_RELEASE" != "$NEXT_RELEASE" ] && [ -n "$NEXT_RELEASE" ]; then
           /kaniko/executor --context ${CI_PROJECT_DIR} --dockerfile ${CI_PROJECT_DIR}/${DOCKERFILE_NAME:-Dockerfile} --snapshotMode=redo \
               --destination skale5/${CI_PROJECT_NAME}:${NEXT_RELEASE}
@@ -31,10 +34,14 @@ kaniko_default_branch_with_semantic:
 kaniko_default_branch_without_semantic:
   extends: .kaniko:image
   rules:
-    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $ENABLE_SEMANTIC_RELEASE == "false"'
+    - if: '$ENABLE_SEMANTIC_RELEASE != "false"'
+      when: never
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+    - if: '$CI_COMMIT_TAG != null'
   script:
     - |
-      if [ "$CURRENT_RELEASE" != "$NEXT_RELEASE" ] && [ -n "$NEXT_RELEASE" ]; then
+      echo -n "CI commit tag is $CI_COMMIT_TAG.\nCI commit branch is $CI_COMMIT_BRANCH."
+      if [ -n "$CI_COMMIT_TAG" ]; then
           /kaniko/executor --context ${CI_PROJECT_DIR} --dockerfile ${CI_PROJECT_DIR}/${DOCKERFILE_NAME:-Dockerfile} --snapshotMode=redo \
               --destination skale5/${CI_PROJECT_NAME}:${CI_COMMIT_TAG}
       fi
@@ -42,4 +49,6 @@ kaniko_default_branch_without_semantic:
 kaniko_not_default_branch:
   extends: .kaniko:image
   rules:
-    - if: '$CI_COMMIT_BRANCH != $CI_DEFAULT_BRANCH'
+    - if: '$CI_COMMIT_BRANCH != $CI_DEFAULT_BRANCH && $CI_COMMIT_TAG == null'
+  script:
+    - echo "CI commit branch is $CI_COMMIT_BRANCH."
