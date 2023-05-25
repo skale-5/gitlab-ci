@@ -27,7 +27,7 @@ variables:
     - >
       semantic-release --branches "$CI_COMMIT_BRANCH" --dry-run | tee
       >(grep -oP 'Found\sgit\stag\s.*\sassociated\swith\sversion\s\K[0-9]+\.[0-9]+\.[0-9]+' > .CURRENT_RELEASE)
-      >(grep -oP 'The\snext\srelease\sversion\sis\s\K[0-9]+\.[0-9]+\.[0-9]+$' > .NEXT_RELEASE)
+      >(grep -oP '[t|T]he\snext\srelease\sversion\sis\s\K[0-9]+\.[0-9]+\.[0-9]+$' > .NEXT_RELEASE)
     - echo "Current release version is $(cat .CURRENT_RELEASE). The next release version will be $(cat .NEXT_RELEASE)."
   variables:
     GL_TOKEN: ${GL_TOKEN}
