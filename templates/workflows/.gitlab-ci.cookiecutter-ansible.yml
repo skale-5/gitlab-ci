@@ -6,5 +6,6 @@ stages:
 
 include:
     - local: /templates/base/.gitlab-ci.gitleaks.yml
+    - local: /templates/base/.gitlab-ci.cookiecutter-docs.yml
     - local: /templates/base/.gitlab-ci.cookiecutter.yml
     - local: /templates/base/.gitlab-ci.basic-semantic-release-scheduled.yml
