@@ -1,6 +1,6 @@
 variables:
   COOKIECUTTER_DOCS_IMAGE: "skale5/cookiecutter-docs"
-  COOKIECUTTER_DOCS_VERSION: "1.1.2"
+  COOKIECUTTER_DOCS_VERSION: "1.1.3"
 
 cookiecutter-docs:
   stage: quality
