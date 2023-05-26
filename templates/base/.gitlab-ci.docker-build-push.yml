@@ -45,7 +45,7 @@ kaniko_default_branch_without_semantic:
           /kaniko/executor --context ${CI_PROJECT_DIR} --dockerfile ${CI_PROJECT_DIR}/${DOCKERFILE_NAME:-Dockerfile} --snapshotMode=redo \
               --destination skale5/${CI_PROJECT_NAME}:${CI_COMMIT_SHORT_SHA} \
               --destination skale5/${CI_PROJECT_NAME}:latest \
-              --destination skale5/${CI_PROJECT_NAME}:${CI_COMMIT_TAG} \
+              --destination skale5/${CI_PROJECT_NAME}:${CI_COMMIT_TAG}
       fi
 
 kaniko_not_default_branch:
