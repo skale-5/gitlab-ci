@@ -12,13 +12,7 @@
     - echo "{\"auths\":{\"https://index.docker.io/v1/\":{\"auth\":\"${DOCKER_AUTH}\"}}}" > /kaniko/.docker/config.json
     - echo "Docker image skale5/${CI_PROJECT_NAME} being generated from ${CI_PROJECT_DIR}/${DOCKERFILE_NAME:-Dockerfile}"
 
-.simple_execution:
-    script:
-      - >-
-        /kaniko/executor --context ${CI_PROJECT_DIR} --dockerfile ${CI_PROJECT_DIR}/${DOCKERFILE_NAME:-Dockerfile} --snapshotMode=redo
-        --build-arg "NEW_TAG=${NEXT_RELEASE}"
-        --destination skale5/${CI_PROJECT_NAME}:${CI_COMMIT_SHORT_SHA}
-        --destination skale5/${CI_PROJECT_NAME}:latest
+
 
 kaniko_default_branch_with_semantic:
   extends: .kaniko:image
@@ -27,12 +21,13 @@ kaniko_default_branch_with_semantic:
       when: never
     - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
   script:
-    - !reference [.simple_execution, script]
     - |
       echo "CI commit branch is $CI_COMMIT_BRANCH."
       if [ "$CURRENT_RELEASE" != "$NEXT_RELEASE" ] && [ -n "$NEXT_RELEASE" ]; then
           /kaniko/executor --context ${CI_PROJECT_DIR} --dockerfile ${CI_PROJECT_DIR}/${DOCKERFILE_NAME:-Dockerfile} --snapshotMode=redo \
               --build-arg "NEW_TAG=${NEXT_RELEASE}" \
+              --destination skale5/${CI_PROJECT_NAME}:${CI_COMMIT_SHORT_SHA} \
+              --destination skale5/${CI_PROJECT_NAME}:latest \
               --destination skale5/${CI_PROJECT_NAME}:${NEXT_RELEASE}
       fi
 
@@ -44,12 +39,13 @@ kaniko_default_branch_without_semantic:
     - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
     - if: '$CI_COMMIT_TAG != null'
   script:
-    - !reference [.simple_execution, script]
     - |
       echo -n "CI commit tag is $CI_COMMIT_TAG.\nCI commit branch is $CI_COMMIT_BRANCH."
       if [ -n "$CI_COMMIT_TAG" ]; then
           /kaniko/executor --context ${CI_PROJECT_DIR} --dockerfile ${CI_PROJECT_DIR}/${DOCKERFILE_NAME:-Dockerfile} --snapshotMode=redo \
-              --destination skale5/${CI_PROJECT_NAME}:${CI_COMMIT_TAG}
+              --destination skale5/${CI_PROJECT_NAME}:${CI_COMMIT_SHORT_SHA} \
+              --destination skale5/${CI_PROJECT_NAME}:latest \
+              --destination skale5/${CI_PROJECT_NAME}:${CI_COMMIT_TAG} \
       fi
 
 kaniko_not_default_branch:
@@ -57,5 +53,8 @@ kaniko_not_default_branch:
   rules:
     - if: '$CI_COMMIT_BRANCH != $CI_DEFAULT_BRANCH && $CI_COMMIT_TAG == null'
   script:
-    - !reference [.simple_execution, script]
     - echo "CI commit branch is $CI_COMMIT_BRANCH."
+    - /kaniko/executor --context ${CI_PROJECT_DIR} --dockerfile ${CI_PROJECT_DIR}/${DOCKERFILE_NAME:-Dockerfile} --snapshotMode=redo \
+        --build-arg "NEW_TAG=${NEXT_RELEASE}" \
+        --destination skale5/${CI_PROJECT_NAME}:${CI_COMMIT_SHORT_SHA} \
+        --destination skale5/${CI_PROJECT_NAME}:latest
