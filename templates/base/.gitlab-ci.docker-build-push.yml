@@ -16,6 +16,7 @@
     script:
       - >-
         /kaniko/executor --context ${CI_PROJECT_DIR} --dockerfile ${CI_PROJECT_DIR}/${DOCKERFILE_NAME:-Dockerfile} --snapshotMode=redo
+        --build-arg "NEW_TAG=${NEXT_RELEASE}"
         --destination skale5/${CI_PROJECT_NAME}:${CI_COMMIT_SHORT_SHA}
         --destination skale5/${CI_PROJECT_NAME}:latest
 
@@ -31,6 +32,7 @@ kaniko_default_branch_with_semantic:
       echo "CI commit branch is $CI_COMMIT_BRANCH."
       if [ "$CURRENT_RELEASE" != "$NEXT_RELEASE" ] && [ -n "$NEXT_RELEASE" ]; then
           /kaniko/executor --context ${CI_PROJECT_DIR} --dockerfile ${CI_PROJECT_DIR}/${DOCKERFILE_NAME:-Dockerfile} --snapshotMode=redo \
+              --build-arg "NEW_TAG=${NEXT_RELEASE}" \
               --destination skale5/${CI_PROJECT_NAME}:${NEXT_RELEASE}
       fi
 
