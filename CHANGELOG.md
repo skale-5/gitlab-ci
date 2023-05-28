@@ -1,3 +1,26 @@
+# [2.5.0](https://git.sk5.io/skale-5/gitlab-ci/compare/v2.4.0...v2.5.0) (2023-05-28)
+
+
+### Bug Fixes
+
+* cant extend array, only hashes ([8edd98c](https://git.sk5.io/skale-5/gitlab-ci/commit/8edd98cbd6ebfcc0c659bc82ae075267fb2bcb33))
+* CI_COMMIT_BRANCH is null when git push tag ([2fb85ac](https://git.sk5.io/skale-5/gitlab-ci/commit/2fb85ac0ef105c734e6b9a610c2bde378d376140))
+* **docker-images:** fix condition on kaniko execution ([dbbe82c](https://git.sk5.io/skale-5/gitlab-ci/commit/dbbe82c3395f1b374cbc2f90d264f19dd1eeb7af))
+* dont work when is first release ([a1172fc](https://git.sk5.io/skale-5/gitlab-ci/commit/a1172fcf0dbc1d14132ab1437d185ecdc6462a9c))
+* fix docker image workflow ([5035b1d](https://git.sk5.io/skale-5/gitlab-ci/commit/5035b1deb78726bd47123353197c273c89bb1c58))
+* fix typo ([28ae346](https://git.sk5.io/skale-5/gitlab-ci/commit/28ae346162cf5a1793b0de048b656f884ffccc9c))
+* pass NEW_TAG to docker build as env var ([b28588e](https://git.sk5.io/skale-5/gitlab-ci/commit/b28588ee917d9971508bf0694a7a2408a46f2501))
+
+
+### Features
+
+* add cookiecutter-docs templates ([d72ba4a](https://git.sk5.io/skale-5/gitlab-ci/commit/d72ba4a91fe80da777fea81f5a2facf902e17996))
+* add docker image ci ([e8b30ff](https://git.sk5.io/skale-5/gitlab-ci/commit/e8b30fff764cf87cca2b29885f83459f888ae3d7))
+* add semantic release dryrun in all workflows ([f60d3ff](https://git.sk5.io/skale-5/gitlab-ci/commit/f60d3ffd361d799017aba78081d47a6eba8d7d24))
+* **semantic-release:** add exec plugin ([65ad0fc](https://git.sk5.io/skale-5/gitlab-ci/commit/65ad0fcbc803cc9327761d525d987481e67eb0b8))
+* upgrade cookiecutter-docs ([b1dc647](https://git.sk5.io/skale-5/gitlab-ci/commit/b1dc64779e5841ed9b755206ebc1d8e89d480493))
+* use only one build for docker image ([d6c72ca](https://git.sk5.io/skale-5/gitlab-ci/commit/d6c72ca41cd1b29b4c3df6299d5009b5254da874))
+
 # [2.4.0](https://git.sk5.io/skale-5/gitlab-ci/compare/v2.3.0...v2.4.0) (2023-04-30)
 
 
