@@ -12,4 +12,4 @@ include:
     - local: /templates/base/.gitlab-ci.docker-build-push.yml
     - local: /templates/base/.gitlab-ci.basic-semantic-release-auto.yml
       rules:
-          - if: $ENABLE_SEMANTIC_RELEASE != "false"
+          - if: '$ENABLE_SEMANTIC_RELEASE != "false" && $CI_PIPELINE_SOURCE == "push"'

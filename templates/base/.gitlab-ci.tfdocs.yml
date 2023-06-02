@@ -15,5 +15,4 @@ terraform-docs:
     - echo "    <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->" >> tfdocs.yml
     - echo "    {{ .Content }}" >> tfdocs.yml
     - echo "    <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->" >> tfdocs.yml
-    - cat tfdocs.yml
     - terraform-docs --config tfdocs.yml --output-check .
