@@ -1,3 +1,11 @@
+## [2.5.1](https://git.sk5.io/skale-5/gitlab-ci/compare/v2.5.0...v2.5.1) (2023-06-04)
+
+
+### Bug Fixes
+
+* **docker-images:** add -beta to latest build ([36f922b](https://git.sk5.io/skale-5/gitlab-ci/commit/36f922b0fac77d60e5fa65da855532a25a0281f5))
+* run build only on push ([8e714ff](https://git.sk5.io/skale-5/gitlab-ci/commit/8e714ff9fd919d743566c1766a4c971253b84310))
+
 # [2.5.0](https://git.sk5.io/skale-5/gitlab-ci/compare/v2.4.0...v2.5.0) (2023-05-28)
 
 
