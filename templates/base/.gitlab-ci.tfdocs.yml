@@ -1,11 +1,7 @@
-variables:
-  TF_TERRAFORM_DOCS_IMAGE: "cytopia/terraform-docs"
-  TF_TERRAFORM_DOCS_VERSION: "0.16.0"
-
 terraform-docs:
   stage: quality
   image:
-    name: ${TF_TERRAFORM_DOCS_IMAGE}:${TF_TERRAFORM_DOCS_VERSION}
+    name: cytopia/terraform-docs:0.16.0
   script:
     - echo -e "formatter:\x20\"markdown table\"" > tfdocs.yml
     - echo "output:" >> tfdocs.yml

@@ -13,7 +13,6 @@
     - echo "Docker image skale5/${CI_PROJECT_NAME} being generated from ${CI_PROJECT_DIR}/${DOCKERFILE_NAME:-Dockerfile}"
 
 
-
 kaniko_default_branch_with_semantic:
   extends: .kaniko:image
   rules:

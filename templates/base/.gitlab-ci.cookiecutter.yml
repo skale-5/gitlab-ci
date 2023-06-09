@@ -1,11 +1,11 @@
 variables:
-  COOKIECUTTER_IMAGE: "python:slim-bullseye"
+  # renovate: datasource=github-releases depName=cookiecutter/cookiecutter
   COOKIECUTTER_VERSION: "2.1.1"
 
 build-cookiecutter:
   stage: build
   image:
-    name: ${COOKIECUTTER_IMAGE}
+    name: python:slim-bullseye
   script:
     - pip3 install cookiecutter==${COOKIECUTTER_VERSION} packaging
     - DIR=$(basename "$(pwd)")

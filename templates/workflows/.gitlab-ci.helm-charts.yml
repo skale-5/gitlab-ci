@@ -1,0 +1,11 @@
+stages:
+    - quality
+    - pre-release
+    - build
+    - release
+
+include:
+    - local: /templates/base/.gitlab-ci.gitleaks.yml
+    - local: /templates/base/.gitlab-ci.helm-test.yml
+    - local: /templates/base/.gitlab-ci.helm-package-push.yml
+    - local: /templates/base/.gitlab-ci.basic-semantic-release-auto.yml

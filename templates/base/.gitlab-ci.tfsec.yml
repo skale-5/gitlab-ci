@@ -1,13 +1,9 @@
-variables:
-  TF_TFSEC_IMAGE: "aquasec/tfsec-ci"
-  TF_TFSEC_VERSION: "v1.28.1"
-
 terraform-tfsec:
   stage: quality
   variables:
     OUTPUT: tfsec.xml
   image:
-    name: ${TF_TFSEC_IMAGE}:${TF_TFSEC_VERSION}
+    name: aquasec/tfsec-ci:v1.28.1
   script:
     - tfsec . --format junit --out ${OUTPUT} --config-file=.tfsec.yml --var-file tests/terraform.tfvars
   after_script:

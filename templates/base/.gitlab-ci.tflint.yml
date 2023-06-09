@@ -1,13 +1,9 @@
-variables:
-  TF_TFLINT_IMAGE: "ghcr.io/terraform-linters/tflint-bundle"
-  TF_TFLINT_VERSION: v0.45.0.2
-
 terraform-tflint:
   stage: quality
   variables:
     OUTPUT: tflint.xml
   image:
-    name: ${TF_TFLINT_IMAGE}:${TF_TFLINT_VERSION}
+    name: ghcr.io/terraform-linters/tflint-bundle:v0.45.0.2
     entrypoint: [""]
   script:
     - tflint --init

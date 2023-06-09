@@ -1,0 +1,14 @@
+helm_test:
+  stage: quality
+  image:
+    name: alpine/helm:3.12.0
+    entrypoint: [""]
+  script:
+    - helm dependency build ${CI_PROJECT_NAME}
+    - helm dependency list ${CI_PROJECT_NAME}
+    - helm lint ${CI_PROJECT_NAME} --strict
+    - helm template ${CI_PROJECT_NAME} > template-result-${CI_PROJECT_NAME}.yaml
+  artifacts:
+    name: template-results
+    paths:
+      - template-result-*.yaml

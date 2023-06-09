@@ -1,9 +1,6 @@
 include:
   - local: /templates/base/.gitlab-ci.check-var.yml
 
-variables:
-  SEMANTIC_RELEASE_IMAGE: "node:18-buster-slim"
-
 .check-GL_TOKEN:
   extends: .check
   variables:
@@ -15,7 +12,7 @@ variables:
 
 .semantic-release-dryrun:
   stage: pre-release
-  image: ${SEMANTIC_RELEASE_IMAGE}
+  image: node:18-buster-slim
   before_script:
     - apt-get update && apt-get install -y --no-install-recommends git-core ca-certificates
     - npm install -g semantic-release @semantic-release/gitlab
@@ -40,7 +37,7 @@ variables:
 
 .semantic-release:
   stage: release
-  image: ${SEMANTIC_RELEASE_IMAGE}
+  image: node:18-buster-slim
   before_script:
     - apt-get update && apt-get install -y --no-install-recommends git-core ca-certificates
     - npm install -g semantic-release @semantic-release/gitlab
