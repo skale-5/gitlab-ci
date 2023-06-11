@@ -1,3 +1,10 @@
+# [2.6.0](https://git.sk5.io/skale-5/gitlab-ci/compare/v2.5.1...v2.6.0) (2023-06-11)
+
+
+### Features
+
+* add new workflow for helm charts ([94d0aa6](https://git.sk5.io/skale-5/gitlab-ci/commit/94d0aa61c0af87eb360c00fc27d43cdae493c0c5))
+
 ## [2.5.1](https://git.sk5.io/skale-5/gitlab-ci/compare/v2.5.0...v2.5.1) (2023-06-04)
 
 
