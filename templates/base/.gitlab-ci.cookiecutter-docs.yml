@@ -1,7 +1,7 @@
 cookiecutter-docs:
   stage: quality
   image:
-    name: skale5/cookiecutter-docs:1.1.5"
+    name: skale5/cookiecutter-docs:1.1.5
     entrypoint: [""]
   script:
     - cookiecutter-docs --only-verify --strict
