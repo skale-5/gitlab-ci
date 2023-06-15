@@ -14,10 +14,15 @@ helm_package_push:
     - gcloud auth activate-service-account --key-file=${HOME}/sa.json
     - gcloud auth print-access-token | helm registry login -u oauth2accesstoken --password-stdin https://${REGISTRY}
     - echo "Helm chart ${CI_PROJECT_NAME}-${CI_COMMIT_TAG} will be push on oci://${REGISTRY}/${REGISTRY_PATH}"
-  needs:
-    - job: helm_test
-  only:
-    - tags
+    - CURRENT_RELEASE=$(cat .CURRENT_RELEASE) || true
+    - NEXT_RELEASE=$(cat .NEXT_RELEASE) || true
+    - echo "Current release version is $CURRENT_RELEASE. The next release version will be $NEXT_RELEASE."
+  rules:
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_PIPELINE_SOURCE == "push"'
   script:
-    - helm package ${CI_PROJECT_NAME} --version ${CI_COMMIT_TAG}
-    - helm push ${CI_PROJECT_NAME}-${CI_COMMIT_TAG}.tgz oci://${REGISTRY}/${REGISTRY_PATH}
+    - |
+      echo "CI commit branch is $CI_COMMIT_BRANCH."
+      if [ "$CURRENT_RELEASE" != "$NEXT_RELEASE" ] && [ -n "$NEXT_RELEASE" ]; then
+        helm package ${CI_PROJECT_NAME} --version ${NEXT_RELEASE}
+        helm push ${CI_PROJECT_NAME}-${NEXT_RELEASE}.tgz oci://${REGISTRY}/${REGISTRY_PATH}
+      fi

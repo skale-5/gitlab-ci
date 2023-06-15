@@ -4,8 +4,13 @@ stages:
     - build
     - release
 
+variables:
+    SEMANTIC_RELEASE_DRYRUN_ON_DEFAULT_BRANCH: "true"
+
 include:
     - local: /templates/base/.gitlab-ci.gitleaks.yml
     - local: /templates/base/.gitlab-ci.helm-test.yml
     - local: /templates/base/.gitlab-ci.helm-package-push.yml
     - local: /templates/base/.gitlab-ci.basic-semantic-release-auto.yml
+      rules:
+          - if: '$CI_PIPELINE_SOURCE == "push"'
