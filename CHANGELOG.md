@@ -1,3 +1,11 @@
+## [2.6.1](https://git.sk5.io/skale-5/gitlab-ci/compare/v2.6.0...v2.6.1) (2023-06-18)
+
+
+### Bug Fixes
+
+* fix typo ([7d03183](https://git.sk5.io/skale-5/gitlab-ci/commit/7d0318333bc128d75151d8358cc5cb28a77534a3))
+* **helm:** fix workflow ([c04f135](https://git.sk5.io/skale-5/gitlab-ci/commit/c04f13539c6f3a31ca2bd93c9e39350df0e502d2))
+
 # [2.6.0](https://git.sk5.io/skale-5/gitlab-ci/compare/v2.5.1...v2.6.0) (2023-06-11)
 
 
