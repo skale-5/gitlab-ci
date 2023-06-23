@@ -1,6 +1,9 @@
 gitleaks:
   stage: quality
-  image: 
+  variables:
+    GIT_STRATEGY: clone # clone entire repo instead of reusing workspace
+    GIT_DEPTH: 0 # avoid shallow clone
+  image:
     name: "zricethezav/gitleaks"
     entrypoint: [""]
   script: gitleaks detect -v --source=$PWD
