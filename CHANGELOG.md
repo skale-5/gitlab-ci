@@ -1,3 +1,10 @@
+## [2.6.2](https://git.sk5.io/skale-5/gitlab-ci/compare/v2.6.1...v2.6.2) (2023-06-25)
+
+
+### Bug Fixes
+
+* do not use shallow clone with gitleaks ([c945425](https://git.sk5.io/skale-5/gitlab-ci/commit/c9454258ff1b1c0f30876eaa91d1ff4a0ea26ad0))
+
 ## [2.6.1](https://git.sk5.io/skale-5/gitlab-ci/compare/v2.6.0...v2.6.1) (2023-06-18)
 
 
