@@ -10,6 +10,7 @@ variables:
 include:
     - local: /templates/base/.gitlab-ci.gitleaks.yml
     - local: /templates/base/.gitlab-ci.docker-build-push.yml
+    - local: /templates/base/.gitlab-ci.trivy.yml
     - local: /templates/base/.gitlab-ci.basic-semantic-release-auto.yml
       rules:
           - if: '$ENABLE_SEMANTIC_RELEASE != "false" && $CI_PIPELINE_SOURCE == "push"'

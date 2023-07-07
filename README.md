@@ -68,3 +68,37 @@ Il faut créer le fichier `.releaserc` dans le repo dans lequel on veut utiliser
 ```
 
 Un changelog est automatiquement généré
+
+
+## Configuration de trivy
+
+Si aucun fichier de configuration n'est fournit, alors le pipeline en créé un [par default](templates/base/.gitlab-ci.trivy.yml).
+
+### Exemple pour une CI qui ne fail pas mais qui analyse tous les niveaux de criticité
+
+```yaml
+ security-checks:
+  - vuln
+  - config
+  - secret
+vulnerability:
+  type:
+    - os
+    - library
+  ignore-unfixed: false
+exit-code: 0
+severity:
+  - UNKNOWN
+  - LOW
+  - MEDIUM
+  - HIGH
+  - CRITICAL
+```
+
+### Exemple pour une CI sort en erreur si CRITICAL
+
+```yaml
+exit-code: 1
+severity:
+  - CRITICAL
+```
