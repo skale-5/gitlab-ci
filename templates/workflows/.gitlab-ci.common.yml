@@ -2,6 +2,7 @@ stages:
     - quality
     - pre-release
     - release
+    - deploy
 
 include:
     - local: /templates/base/.gitlab-ci.gitleaks.yml
