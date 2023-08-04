@@ -1,22 +1,27 @@
 variables:
-  REGISTRY: europe-west1-docker.pkg.dev
-  REGISTRY_PATH: sk5-internal-exploit/helm
+  GCP_REGISTRY: europe-west1-docker.pkg.dev
+  GCP_REGISTRY_PATH: sk5-internal-exploit/helm
   # renovate: datasource=github-releases depName=helm/helm
   HELM_VERSION: "v3.12.0"
+  AWS_REGISTRY: 196210769287.dkr.ecr.eu-west-3.amazonaws.com
+  AWS_REGISTRY_REGION: eu-west-3
 
-helm_package_push:
+.common: &common
+  - curl https://get.helm.sh/helm-${HELM_VERSION}-linux-amd64.tar.gz | tar -C /bin/ -xzvf - linux-amd64/helm --strip-components 1
+  - CURRENT_RELEASE=$(cat .CURRENT_RELEASE) || true
+  - NEXT_RELEASE=$(cat .NEXT_RELEASE) || true
+  - echo "Current release version is $CURRENT_RELEASE. The next release version will be $NEXT_RELEASE."
+
+helm_package_push_gcp:
   stage: build
   image:
     name: google/cloud-sdk:alpine
   before_script:
-    - curl https://get.helm.sh/helm-${HELM_VERSION}-linux-amd64.tar.gz | tar -xzvf - linux-amd64/helm --strip-components 1 -C /bin/
+    - *common
     - echo "${SA_B64}" | base64 -d > ${HOME}/sa.json
     - gcloud auth activate-service-account --key-file=${HOME}/sa.json
-    - gcloud auth print-access-token | helm registry login -u oauth2accesstoken --password-stdin https://${REGISTRY}
-    - echo "Helm chart ${CI_PROJECT_NAME}-${CI_COMMIT_TAG} will be push on oci://${REGISTRY}/${REGISTRY_PATH}"
-    - CURRENT_RELEASE=$(cat .CURRENT_RELEASE) || true
-    - NEXT_RELEASE=$(cat .NEXT_RELEASE) || true
-    - echo "Current release version is $CURRENT_RELEASE. The next release version will be $NEXT_RELEASE."
+    - gcloud auth print-access-token | helm registry login -u oauth2accesstoken --password-stdin https://${GCP_REGISTRY}
+    - echo "Helm chart ${CI_PROJECT_NAME}-${CI_COMMIT_TAG} will be push on oci://${GCP_REGISTRY}/${GCP_REGISTRY_PATH}"
   rules:
     - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_PIPELINE_SOURCE == "push"'
   script:
@@ -24,5 +29,24 @@ helm_package_push:
       echo "CI commit branch is $CI_COMMIT_BRANCH."
       if [ "$CURRENT_RELEASE" != "$NEXT_RELEASE" ] && [ -n "$NEXT_RELEASE" ]; then
         helm package ${CI_PROJECT_NAME} --version ${NEXT_RELEASE}
-        helm push ${CI_PROJECT_NAME}-${NEXT_RELEASE}.tgz oci://${REGISTRY}/${REGISTRY_PATH}
+        helm push ${CI_PROJECT_NAME}-${NEXT_RELEASE}.tgz oci://${GCP_REGISTRY}/${GCP_REGISTRY_PATH}
+      fi
+
+helm_package_push_aws:
+  stage: build
+  image:
+    name: amazon/aws-cli:2.13.6
+  before_script:
+    - yum install -y tar gzip
+    - *common
+    - aws ecr get-login-password --region ${AWS_REGISTRY_REGION} | helm registry login --username AWS --password-stdin ${AWS_REGISTRY}
+    - echo "Helm chart ${CI_PROJECT_NAME}-${CI_COMMIT_TAG} will be push on oci://${AWS_REGISTRY}/${CI_PROJECT_NAME}"
+  rules:
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_PIPELINE_SOURCE == "push" && $ENABLE_AWS_REPOSITORY'
+  script:
+    - |
+      echo "CI commit branch is $CI_COMMIT_BRANCH."
+      if [ "$CURRENT_RELEASE" != "$NEXT_RELEASE" ] && [ -n "$NEXT_RELEASE" ]; then
+        helm package ${CI_PROJECT_NAME} --version ${NEXT_RELEASE}
+        helm push ${CI_PROJECT_NAME}-${NEXT_RELEASE}.tgz oci://${AWS_REGISTRY}
       fi
