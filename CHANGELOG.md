@@ -1,3 +1,10 @@
+# [2.7.0](https://git.sk5.io/skale-5/gitlab-ci/compare/v2.6.2...v2.7.0) (2023-08-06)
+
+
+### Features
+
+* push helm chart to aws registry ([44773e3](https://git.sk5.io/skale-5/gitlab-ci/commit/44773e3d33c1de5416df2d995b3171f4a1625858))
+
 ## [2.6.2](https://git.sk5.io/skale-5/gitlab-ci/compare/v2.6.1...v2.6.2) (2023-06-25)
 
 
