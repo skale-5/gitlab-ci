@@ -48,3 +48,8 @@ trivy:
         --tar-path image.tar
     # Print report
     ./trivy image --config trivy.yaml --input image.tar
+  rules:
+    - if: '$TRIVY_ALLOW_FAILURE == "true"'
+      allow_failure: true
+    - if: '$TRIVY_ALLOW_FAILURE != "true"'
+      allow_failure: false
