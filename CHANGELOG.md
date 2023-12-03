@@ -1,3 +1,10 @@
+# [2.8.0](https://git.sk5.io/skale-5/gitlab-ci/compare/v2.7.0...v2.8.0) (2023-12-03)
+
+
+### Features
+
+* **trivy:** conditionally allow failure for trivy job ([cc2dd15](https://git.sk5.io/skale-5/gitlab-ci/commit/cc2dd155bc074c5966515e28440659afa978359e))
+
 # [2.7.0](https://git.sk5.io/skale-5/gitlab-ci/compare/v2.6.2...v2.7.0) (2023-08-06)
 
 
