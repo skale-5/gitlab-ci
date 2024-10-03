@@ -1,7 +1,8 @@
 terraform-docs:
   stage: quality
   image:
-    name: cytopia/terraform-docs:0.16.0
+    name: quay.io/terraform-docs/terraform-docs:0.19.0
+    entrypoint: [""]
   script:
     - echo -e "formatter:\x20\"markdown table\"" > tfdocs.yml
     - echo "output:" >> tfdocs.yml
@@ -11,4 +12,4 @@ terraform-docs:
     - echo "    <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->" >> tfdocs.yml
     - echo "    {{ .Content }}" >> tfdocs.yml
     - echo "    <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->" >> tfdocs.yml
-    - terraform-docs --config tfdocs.yml --output-check .
+    - terraform-docs markdown --config tfdocs.yml --output-file README.md --output-check .
