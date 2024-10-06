@@ -1,3 +1,10 @@
+## [2.8.1](https://git.sk5.io/skale-5/gitlab-ci/compare/v2.8.0...v2.8.1) (2024-10-06)
+
+
+### Bug Fixes
+
+* **terraform-docs:** switch to official terraform-docs docker image ([734632c](https://git.sk5.io/skale-5/gitlab-ci/commit/734632ccec1f5e4bfad633899926a9b54a2478b4))
+
 # [2.8.0](https://git.sk5.io/skale-5/gitlab-ci/compare/v2.7.0...v2.8.0) (2023-12-03)
 
 
