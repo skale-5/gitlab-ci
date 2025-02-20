@@ -3,7 +3,7 @@ terraform-tflint:
   variables:
     OUTPUT: tflint.xml
   image:
-    name: ghcr.io/terraform-linters/tflint-bundle:v0.45.0.2
+    name: ghcr.io/terraform-linters/tflint:v0.55.1
     entrypoint: [""]
   script:
     - tflint --init
