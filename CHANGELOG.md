@@ -1,3 +1,10 @@
+## [2.8.2](https://git.sk5.io/skale-5/gitlab-ci/compare/v2.8.1...v2.8.2) (2025-02-23)
+
+
+### Bug Fixes
+
+* tflint docker image ([0ec3cc6](https://git.sk5.io/skale-5/gitlab-ci/commit/0ec3cc60455b939232ff5f15cce398b5b0a1c6e6))
+
 ## [2.8.1](https://git.sk5.io/skale-5/gitlab-ci/compare/v2.8.0...v2.8.1) (2024-10-06)
 
 
