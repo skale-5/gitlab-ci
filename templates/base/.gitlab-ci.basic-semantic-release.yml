@@ -1,5 +1,5 @@
 .semantic-release-base:
-  image: node:lts-buster-slim
+  image: node:lts-bookworm-slim
   before_script:
     - '! [ -v GL_TOKEN ] && echo "GL_TOKEN Gitlab variable has not been found. It should be present in group vars at the /skale-5 scope" && exit 1'
     - apt-get update && apt-get install -y --no-install-recommends git-core ca-certificates
