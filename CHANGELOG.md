@@ -1,3 +1,10 @@
+## [2.8.3](https://git.sk5.io/skale-5/gitlab-ci/compare/v2.8.2...v2.8.3) (2025-07-23)
+
+
+### Bug Fixes
+
+* create new release ([c5066f5](https://git.sk5.io/skale-5/gitlab-ci/commit/c5066f52bfc975359440d3fa92c3d25633ee235a))
+
 ## [2.8.2](https://git.sk5.io/skale-5/gitlab-ci/compare/v2.8.1...v2.8.2) (2025-02-23)
 
 
