@@ -1,3 +1,10 @@
+## [2.8.4](https://git.sk5.io/skale-5/gitlab-ci/compare/v2.8.3...v2.8.4) (2026-02-22)
+
+
+### Bug Fixes
+
+* **kaniko:** add --force flag to the executor command ([79d8bbd](https://git.sk5.io/skale-5/gitlab-ci/commit/79d8bbdea8346c68d88daac63a9e8a5cf6c69ca8))
+
 ## [2.8.3](https://git.sk5.io/skale-5/gitlab-ci/compare/v2.8.2...v2.8.3) (2025-07-23)
 
 
