@@ -1,15 +1,21 @@
 terraform-docs:
   stage: quality
   image:
-    name: quay.io/terraform-docs/terraform-docs:0.20.0
+    name: quay.io/terraform-docs/terraform-docs:0.22.0
     entrypoint: [""]
   script:
-    - echo -e "formatter:\x20\"markdown table\"" > tfdocs.yml
-    - echo "output:" >> tfdocs.yml
-    - echo -e "  file:\x20\"README.md\"" >> tfdocs.yml
-    - echo -e "  mode:\x20inject" >> tfdocs.yml
-    - echo -e "  template:\x20|-" >> tfdocs.yml
-    - echo "    <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->" >> tfdocs.yml
-    - echo "    {{ .Content }}" >> tfdocs.yml
-    - echo "    <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->" >> tfdocs.yml
+    - |
+      if [ -f tfdocs.yml ]; then
+        echo "Using existing tfdocs.yml from the repository"
+      else
+        echo "tfdocs.yml not found, generating default configuration"
+        echo -e "formatter:\"markdown table\"" > tfdocs.yml
+        echo "output:" >> tfdocs.yml
+        echo -e "  file:\"README.md\"" >> tfdocs.yml
+        echo -e "  mode:inject" >> tfdocs.yml
+        echo -e "  template:|-" >> tfdocs.yml
+        echo "    <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->" >> tfdocs.yml
+        echo "    {{ .Content }}" >> tfdocs.yml
+        echo "    <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->" >> tfdocs.yml
+      fi
     - terraform-docs markdown --config tfdocs.yml --output-file README.md --output-check .
