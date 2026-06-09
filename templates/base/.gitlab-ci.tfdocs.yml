@@ -1,7 +1,7 @@
 terraform-docs:
   stage: quality
   image:
-    name: quay.io/terraform-docs/terraform-docs:0.20.0
+    name: quay.io/terraform-docs/terraform-docs:0.24.0
     entrypoint: [""]
   script:
     - |
@@ -18,4 +18,5 @@ terraform-docs:
         echo "    {{ .Content }}" >> tfdocs.yml
         echo "    <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->" >> tfdocs.yml
       fi
+    - terraform-docs version
     - terraform-docs markdown --config tfdocs.yml --output-file README.md --output-check .
